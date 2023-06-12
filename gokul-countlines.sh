@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "countig lines...."
-
 owner=""
 month=""
 
@@ -48,6 +46,7 @@ while getopts ":o:m:" opt; do
   esac
 done
 
+echo "Looking for files created in the month: $month by: $owner"
 
 for FILE in *; do 
   countLines $FILE;
