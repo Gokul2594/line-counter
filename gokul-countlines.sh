@@ -4,8 +4,7 @@ owner=""
 month=""
 
 help_message() {
-    echo "invalid command: no parameter included with argument $OPTARG"
-    echo "valid arguments format"
+    echo "valid arguments format should be:"
     echo "./gokul-countlines.sh -o owner -m month"
     echo "month should be of format Jan, Feb, etc.."
 }
@@ -46,8 +45,13 @@ while getopts ":o:m:" opt; do
   esac
 done
 
-echo "Looking for files created in the month: $month by: $owner"
-
-for FILE in *; do 
-  countLines $FILE;
-done
+if [ $# -eq 0 ];
+then
+    help_message
+    exit 0
+else
+  echo "Looking for files created in the month: $month by: $owner"
+  for FILE in *; do
+    countLines $FILE;
+  done
+fi
